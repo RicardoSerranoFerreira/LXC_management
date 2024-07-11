@@ -1,10 +1,18 @@
-#### 2.2. `main.py`
-
 import argparse
+import logging
 from src import lxc_manager, utils
 
-
 def main():
+    # Configure logging
+    logging.basicConfig(
+        level=logging.INFO,  # Set logging level to INFO
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler('lxc_management.log'),  # Log to a file
+            logging.StreamHandler()  # Log to console
+        ]
+    )
+
     parser = argparse.ArgumentParser(description='LXC Management Tool')
     parser.add_argument('--create', metavar='NAME', type=str, help='Create a new container')
     parser.add_argument('--delete', metavar='NAME', type=str, help='Delete an existing container')
@@ -14,12 +22,13 @@ def main():
     parser.add_argument('--stop', metavar='NAME', type=str, help='Stop a container')
     parser.add_argument('--connect', metavar='NAME', type=str, help='Connect to container')
     parser.add_argument('--run', nargs=2, metavar=('NAME', 'APP'), help='Run application in container')
-    parser.add_argument('--set-limits', nargs=3, metavar=('NAME', 'CPU', 'MEMORY'),help='Set resource limits for container')
-    parser.add_argument('--get-limits', metavar='NAME', type=str,help='Get CPU and Memory Limits')
+    parser.add_argument('--set-limits', nargs=3, metavar=('NAME', 'CPU', 'MEMORY'), help='Set resource limits for container')
+    parser.add_argument('--get-limits', metavar='NAME', type=str, help='Get CPU and Memory Limits')
     parser.add_argument('--list', action='store_true', help='List all containers and their states')
 
     args = parser.parse_args()
 
+    # Handle each argument based on user input
     if args.create:
         lxc_manager.create_container(args.create)
     elif args.delete:
@@ -43,6 +52,6 @@ def main():
     elif args.list:
         lxc_manager.list_containers()
 
-
 if __name__ == '__main__':
     main()
+
