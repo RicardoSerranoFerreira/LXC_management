@@ -1,0 +1,68 @@
+2024-07-11 17:12:00,044 - INFO - Existing containers and their states:
+2024-07-11 17:12:03,494 - INFO - Existing containers and their states:
+2024-07-11 17:12:06,821 - INFO - Existing containers and their states:
+2024-07-11 17:21:45,145 - INFO - Container Cont_A created successfully.
+2024-07-11 17:21:47,441 - INFO - Container Cont_B created successfully.
+2024-07-11 17:21:49,238 - INFO - Existing containers and their states:
+2024-07-11 17:21:49,238 - INFO - Cont_A: STOPPED
+2024-07-11 17:21:49,238 - INFO - Cont_B: STOPPED
+2024-07-11 17:21:57,350 - INFO - Container Cont_A started successfully.
+2024-07-11 17:22:01,912 - INFO - Container Cont_B started successfully.
+2024-07-11 17:22:03,594 - INFO - Existing containers and their states:
+2024-07-11 17:22:03,594 - INFO - Cont_A: RUNNING
+2024-07-11 17:22:03,594 - INFO - Cont_B: RUNNING
+2024-07-11 17:22:10,904 - INFO - Container Cont_A stopped successfully.
+2024-07-11 17:22:12,458 - INFO - Existing containers and their states:
+2024-07-11 17:22:12,458 - INFO - Cont_A: STOPPED
+2024-07-11 17:22:12,458 - INFO - Cont_B: RUNNING
+2024-07-11 17:22:18,423 - INFO - Container Cont_A deleted successfully.
+2024-07-11 17:22:19,738 - INFO - Existing containers and their states:
+2024-07-11 17:22:19,738 - INFO - Cont_B: RUNNING
+2024-07-11 17:22:30,810 - INFO - Container Cont_A created successfully.
+2024-07-11 17:22:37,999 - INFO - Container Cont_A started successfully.
+2024-07-11 17:22:41,093 - INFO - Existing containers and their states:
+2024-07-11 17:22:41,093 - INFO - Cont_A: RUNNING
+2024-07-11 17:22:41,093 - INFO - Cont_B: RUNNING
+2024-07-11 17:22:47,352 - INFO - Existing containers and their states:
+2024-07-11 17:22:47,353 - INFO - Cont_A: RUNNING
+2024-07-11 17:22:47,353 - INFO - Cont_B: RUNNING
+2024-07-11 17:23:10,541 - INFO - Command output:
+bin
+boot
+dev
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+srv
+sys
+tmp
+usr
+var
+
+2024-07-11 17:23:18,558 - INFO - Command output:
+ubuntu
+
+2024-07-11 17:24:46,547 - INFO - Set CPU limit for Cont_A to 5
+2024-07-11 17:24:46,549 - INFO - Set memory limit for Cont_A to 2048M
+2024-07-11 17:24:54,049 - INFO - Current resource limits for Cont_A:
+2024-07-11 17:24:54,049 - INFO - CPU limit: 5
+2024-07-11 17:24:54,049 - INFO - Memory limit: 2147483648
+2024-07-11 17:25:04,349 - INFO - Set CPU limit for Cont_A to 5
+2024-07-11 17:25:04,352 - INFO - Set memory limit for Cont_A to 4096M
+2024-07-11 17:25:07,217 - INFO - Current resource limits for Cont_A:
+2024-07-11 17:25:07,217 - INFO - CPU limit: 5
+2024-07-11 17:25:07,217 - INFO - Memory limit: 4294967296
+2024-07-11 17:25:19,802 - INFO - Container Cont_A stopped successfully.
+2024-07-11 17:25:22,811 - INFO - Container Cont_B stopped successfully.
+2024-07-11 17:49:07,384 - INFO - Container Test created successfully.
+2024-07-11 17:49:21,398 - INFO - Container Test started successfully.
+2024-07-11 17:50:44,517 - INFO - Set CPU limit for Test to 10
+2024-07-11 17:50:44,519 - INFO - Set memory limit for Test to 40000M
