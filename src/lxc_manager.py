@@ -28,13 +28,29 @@ def execute_command(container_name, command):
     except subprocess.CalledProcessError as e:
         print(f"Failed to execute command in {container_name}: {e.stderr}")
 
-
 def copy_to_container(container_name, source, destination):
     try:
-        subprocess.run(['lxc-file', 'push', source, f"{container_name}/{destination}"], check=True)
+        # Construct the command for copying files into the container
+        command = ['sudo', 'lxc', 'file', 'push', source, f"{container_name}/{destination}/"]
+
+        # Execute the command and capture the output
+        result = subprocess.run(command, capture_output=True, text=True, check=True)
+
+        # Print success message if the command succeeds
         print(f"Copied {source} to {container_name}:{destination} successfully.")
+
+        # Print the command output if needed
+        print(result.stdout)
+
     except subprocess.CalledProcessError as e:
+        # Print error message if the command fails
         print(f"Failed to copy {source} to {container_name}:{destination}: {e}")
+        # Print the error output for debugging
+        print(e.stderr)
+
+
+# Example usage:
+copy_to_container("Test3", "./demo/TestFile", "/home")
 
 
 def start_container(container_name):
@@ -63,18 +79,21 @@ def connect_to_container(container_name):
 def run_application(container_name, application):
     execute_command(container_name, application)
 
+def list_containers():
+    try:
+        # Run lxc-ls command to list containers
+        list_output = subprocess.run(['sudo', 'lxc-ls', '--fancy'], capture_output=True, text=True, check=True)
 
-def set_resource_limits(container_name, cpu_limit=None, memory_limit=None):
-    if cpu_limit:
-        try:
-            subprocess.run(['lxc-cgroup', '-n', container_name, 'cpuset.cpus', cpu_limit], check=True)
-            print(f"Set CPU limit for {container_name} to {cpu_limit}")
-        except subprocess.CalledProcessError as e:
-            print(f"Failed to set CPU limit for {container_name}: {e}")
+        # Process the output to extract container names and their states
+        container_lines = list_output.stdout.strip().split('\n')[1:]  # Skip header line
 
-    if memory_limit:
-        try:
-            subprocess.run(['lxc-cgroup', '-n', container_name, 'memory.limit_in_bytes', memory_limit], check=True)
-            print(f"Set memory limit for {container_name} to {memory_limit}")
-        except subprocess.CalledProcessError as e:
-            print(f"Failed to set memory limit for {container_name}: {e}")
+        print("Existing containers and their states:")
+        for line in container_lines:
+            parts = line.split()
+            if len(parts) >= 2:
+                container_name = parts[0]
+                state = parts[1]
+                print(f"{container_name}: {state}")
+
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to list containers: {e}")

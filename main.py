@@ -14,8 +14,9 @@ def main():
     parser.add_argument('--stop', metavar='NAME', type=str, help='Stop a container')
     parser.add_argument('--connect', metavar='NAME', type=str, help='Connect to container')
     parser.add_argument('--run', nargs=2, metavar=('NAME', 'APP'), help='Run application in container')
-    parser.add_argument('--set-limits', nargs=3, metavar=('NAME', 'CPU', 'MEMORY'),
-                        help='Set resource limits for container')
+    parser.add_argument('--set-limits', nargs=3, metavar=('NAME', 'CPU', 'MEMORY'),help='Set resource limits for container')
+    parser.add_argument('--get-limits', metavar='NAME', type=str,help='Get CPU and Memory Limits')
+    parser.add_argument('--list', action='store_true', help='List all containers and their states')
 
     args = parser.parse_args()
 
@@ -36,7 +37,11 @@ def main():
     elif args.run:
         lxc_manager.run_application(args.run[0], args.run[1])
     elif args.set_limits:
-        lxc_manager.set_resource_limits(args.set_limits[0], args.set_limits[1], args.set_limits[2])
+        utils.set_resource_limits(args.set_limits[0], args.set_limits[1], args.set_limits[2])
+    elif args.get_limits:
+        utils.get_resource_limits(args.get_limits)
+    elif args.list:
+        lxc_manager.list_containers()
 
 
 if __name__ == '__main__':
